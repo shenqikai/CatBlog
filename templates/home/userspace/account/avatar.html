@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      
+      
+      
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Cache-Control" content="max-age=72000" />
+		<meta name="_csrf" th:content="${_csrf.token}" />
+		<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../../../static/components/bootstrap/dist/css/bootstrap.min.css">
+		<!--<link rel="stylesheet" href="http://cdn.codergroup.cn/components/font-awesome/css/font-awesome.min.css">-->
+		<link rel="stylesheet" href="../../../../static/components/adminlte/css/AdminLTE.min.css">
+		<link rel="stylesheet" href="../../../../static/components/adminlte/css/skins/skin-green-light.min.css">
+		<link rel="stylesheet" href="../../../../static/css/style.css">
+		<link rel="stylesheet" href="../../../../static/components/layer/theme/default/layer.css">
+		<link rel="icon" href="../../../../static/Cat4.ico" type="image/x-icon" />
+
+
+
+
+
+
+</head>
+
+	
+	<header class="main-header">
+
+		<body class="hold-transition skin-green-light layout-top-nav">
+			<div class="wrapper">
+
+				<nav class="navbar navbar-static-top">
+					<div class="container">
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+							<ul class="nav navbar-nav" style="">
+								<form class="navbar-form navbar-left" action="/search/articles" role="search">
+									<div class="form-group">
+										<input type="text" class="form-control global-search-input" name="keywords" id="main-search-input" placeholder="Search...">
+									</div>
+								</form>
+								<li style="padding-left: 40px;">
+									<a href="../../../index.html" class="active">首页</a>
+								</li>
+
+								<li style="padding-left: 40px;">
+									<a href="../../../home/article_list.html" class="active">日志</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../../..//home/userspace/article/add.html">写日志</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../../../home/question_list.html">问答</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../../../home/userspace/question/add.html">提问</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../../../home/homepage/article.html">我的主页</a>
+								</li>
+							</ul>
+
+						</div>
+
+						<div class="navbar-custom-menu" id="user-nav-wrapper">
+
+							<ul class="nav navbar-nav">
+								<li>
+									<a id="loginModalBtn" href="../../../home/login/login.html">登录 </a>
+								</li>
+								<li>
+									<a href="../../../home/login/register.html" target="_blank">注册</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+	</header>
+
+    
+    
+    <div class="content-wrapper">
+
+        <div class="container">
+            <section class="content">
+                <div class="row">
+                	
+                   	  <div class="col-md-3">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">个人中心</h3>
+                       
+                            </div>
+                            <div class="box-body no-padding">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="../../homepage/article.html" target="_blank">我的主页</a></li>
+                                    <li class="active"><a href="">我的账号</a>
+                                    </li>
+                                    <li><a href="../relationship.html">关系管理</a></li>
+                                    <li><a href="../notice.html">通知管理<span
+                                            class="label label-warning pull-right" >20</span></a></li>
+                                   
+
+                                </ul>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+
+                        <div class="box box-solid collapsed-box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">文章管理</h3>
+                                       <div class="box-tools">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                </div>
+                    
+                            </div>
+                            <div class="box-body no-padding"  style="display: none;">
+                                   <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="../article/add.html">发表文章</a></li>
+                                    <li><a href="../userspace/article/list.html">文章管理</a></li>
+                                    <li><a href="../category.html"><i></i>个人分类管理</a></li>
+                                    <li><a href="../comment.html"><i></i>评论管理</a></li>
+                                    <li><a href="../bookmark.html">收藏夹</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="box box-solid collapsed-box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">问答管理</h3>
+                                <div class="box-tools">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-plus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                            class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body no-padding" style="display: none;">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="../../userspace/question/question-list.html">我的问题</a></li>
+                                    <li><a href="../../userspace/question/answer-list.html">我的回答</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-9">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">我的账号</h3>
+                            </div>
+                            <div class="box-body" id="right-box-body">
+                                <div id="right-box-body-replace">
+                                    <div class="nav-tabs-custom" style="box-shadow: 0 0;">
+                                        <ul class="nav nav-tabs">
+                                            <li><a href="profile.html" id="profile">基本资料</a></li>
+                                            <li class="active"><a href="avatar.html" id="avatar">我的头像</a></li>
+                                            <li><a href="security.html" id="security">账号安全</a></li>
+                                            <li><a href="login_record.html" id="login-record">登录日志</a></li>
+                                            <li><a href="binding.html" id="bind">第三方绑定</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <!-- /.tab-pane -->
+                                            <div class="tab-pane active" id="avatar-tab">
+                                                <div class="box-body">
+                                                    <div class="box-body-replace">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <img src="" alt="" width="140px;"
+                                                                     class="user-image"><br>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="file-container"
+                                                                     style="display:inline-block;position:relative;overflow: hidden;vertical-align:middle">
+                                                                    <button class="btn btn-primary fileinput-button"
+                                                                            type="button">选择图片
+                                                                    </button>
+                                                                    <input type="file" id="avatarFile" name="avatarFile"
+                                                                           onchange="uploadAvatar(this.files[0])"
+                                                                           style="position:absolute;top:0;left:0;font-size:34px; opacity:0">
+                                                                </div>
+                                                                <span id="filename"
+                                                                      style="vertical-align: middle">未上传文件</span>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <br>
+                                                                请选择图片上传：仅支持JPG、JPEG、PNG、GIF、BMP等格式，图片需小于2M
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <!-- /.tab-content -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+<footer class="main-footer">
+		<div class="container" style="text-align: center;">
+			<strong>Copyright &copy; 2018 <a href="http://shenqikai.com">CatBlog</a></strong>
+			<a href="http://www.miitbeian.gov.cn/" class="text-black" target="_blank">苏ICP备19003971号-1</a>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<script type="text/javascript" src="../../../../static/components/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../../static/components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="../../../../static/js/script.js"></script>
+	<script type="text/javascript" src="../../../../static/components/adminlte/js/adminlte.min.js"></script>
+</body>
+</html>

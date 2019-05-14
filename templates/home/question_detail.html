@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="max-age=72000"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/components/bootstrap/dist/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="http://cdn.codergroup.cn/components/font-awesome/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="../../static/components/adminlte/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../../static/components/adminlte/css/skins/skin-green-light.min.css">
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="../../static/components/layer/theme/default/layer.css">
+    <link rel="icon" href="../../static/Cat4.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="../../static/css/comment.min.css">
+	<link rel="stylesheet" href="../../static/components/simditor/styles/simditor.css">
+	<link rel="stylesheet" href="../../static/components/highlight/styles/github-gist.css">
+	<link rel="stylesheet" href="../../static/css/question.css">
+<style>
+    .question-content {
+        border: 0 !important;
+    }
+
+    .question-content .simditor-body {
+        padding: 0 !important;
+    }
+
+    .question-content .simditor-body blockquote {
+        display: block;
+        padding: 16px;
+        margin: 15px 0;
+        border-left: 8px solid #3c8dbc;
+        background: #EEF0F4;
+        overflow: auto;
+        overflow-scrolling: touch;
+        word-wrap: normal;
+        word-break: normal;
+    }
+
+    .question-content .simditor-body blockquote p {
+        font-size: 14px;
+        line-height: 22px;
+        color: #999;
+        font-weight: 400;
+        margin-bottom: 0;
+    }
+</style>
+</head>
+	
+
+	<header class="main-header">
+
+		<body class="hold-transition skin-green-light layout-top-nav">
+			<div class="wrapper">
+
+				<nav class="navbar navbar-static-top">
+					<div class="container">
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+							<ul class="nav navbar-nav" style="">
+								<form class="navbar-form navbar-left" action="/search/articles" role="search">
+									<div class="form-group">
+										<input type="text" class="form-control global-search-input" name="keywords" id="main-search-input" placeholder="Search...">
+									</div>
+								</form>
+								<li style="padding-left: 40px;">
+									<a href="../index.html" class="active">首页</a>
+								</li>
+
+								<li style="padding-left: 40px;">
+									<a href="../home/article_list.html" class="active">日志</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../../templates/home/userspace/article/add.html">写日志</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../home/question_list.html">问答</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="..//home/userspace/question/add.html">提问</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../home/homepage/article.html">我的主页</a>
+								</li>
+							</ul>
+
+						</div>
+
+						<div class="navbar-custom-menu" id="user-nav-wrapper">
+
+							<ul class="nav navbar-nav">
+								<li>
+									<a id="loginModalBtn" href="../templates/home/login/login.html">登录 </a>
+								</li>
+								<li>
+									<a href="../templates/home/login/register.html" target="_blank">注册</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+	</header>
+
+  
+
+    <div class="content-wrapper">
+
+        <div class="container" >
+            <section class="content">
+                <div class="row">
+                	<!--左侧-->
+                	    <div class="col-md-3 hidden-xs" id="sidebar">
+
+                        <div class="box box-widget widget-user-2">
+                            <!-- Add the bg color to the header using any of the bg-* classes -->
+                            <div class="widget-user-header bg-aqua-active">
+                                <div class="widget-user-image">
+                                    <img class="img-circle" src="../../static/Cat.jpg"
+                                         alt="User Avatar">
+                                </div>
+                                <!-- /.widget-user-image -->
+                                <h3 class="widget-user-username">沈琪凯</h3>
+                                <h5 class="widget-user-desc" >Java工程师</h5>
+                            </div>
+                            <div class="box-footer no-padding">
+                                <ul class="nav nav-stacked">
+                                    <li><a href="#">声望 <span
+                                            class="pull-right badge bg-blue" >20</span></a></li>
+                                    </li>
+                                    <li><a href="#">提问数<span
+                                            class="pull-right badge bg-red" >20</span></a></li>
+                                    <li><a href="#">回答数 <span class="pull-right badge bg-green"
+                                                              >2</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">光荣榜</h3>
+                                <div class="box-tools">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="box-body" style="padding: 0 10px;">
+								<ul class="profile-mine__content mb0">
+									<li>
+										<div class="row">
+											<div class="col-md-12 profile-mine__content--title-warp">
+												<a class="profile-mine__content--title">
+													为甚么自己不行
+												</a>
+											</div>
+										</div>
+									</li>
+									<li style="border-bottom: 0;">
+										<a>查看更多</a>
+									</li>
+								</ul>
+							</div>
+                            
+
+                        </div>
+
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">联系我们</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <strong><i class="fa fa-qq margin-r-5"></i>QQ交流群</strong>
+
+                                <p class="text-muted">
+                                     交流群：<strong>88888888</strong> <br>
+                                    CoderGroup交流群：<strong>88888</strong> <br>
+                                    谈论人生，交流技术和分享资源。
+                                </p>
+
+                                <hr>
+                                <strong><i class="fa fa-wechat margin-r-5"></i> 管理员微信</strong>
+
+                                <p class="text-muted">
+                                    微信号：<strong>888888</strong>(QQ同号) <br>
+                                    遇到问题，可以联系管理员
+                                </p>
+
+                                <hr>
+                                
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+
+                	
+                	
+                    <div class="col-md-9">
+                        <!--问题盒子-->
+                        <div class="box box-solid">
+                            <div class="box-body">
+                                <div id="primary" class="content-area">
+
+                                    <ol class="breadcrumb">
+                                        <li><a href="">首页</a>
+                                        <li><a href="" > 沈琪凯</a>
+                                        </li>
+                                        <li class="active">正文</li>
+                                    </ol>
+
+                                    <div class="post-topheader__info">
+                                        <h1 class="h3 post-topheader__info--title" id="questionTitle"
+                                            data-id="1010000015196966">
+                                            <span class="post-topheader__title--icon-symbol">问</span>
+                                            <a>标题</a>
+                                        </h1>
+
+                                        <ul class="taglist--inline inline-block question__title--tag mr10">
+                                       
+                                            <li class="tagPopup mb5" th:each="tag : *{tagList}">
+                                                <a class="tag">
+                                                    spring
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                        <div class="question__author">
+                                            <a class="mr5">
+                                                <strong >沈琪凯</strong>
+                                            </a>
+                                            <span>三天前提问</span>
+                                            <span >
+                                                  
+                                        · <span class="text-teal">一分钟前更新</span>
+                                         </span>
+                                            <span class="mr5" >已解决</span>
+                                            <span class="mr5 text-maroon" >未解决</span>
+                                                
+                                            <a >编辑</a>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="simditor question-content">
+                                        <div class="simditor-body" >
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="post-opt col-md-8">
+                                            <ul class="list-inline">
+                                                <li class="pr15">
+                                                    <a>58 分钟前提问</a>
+                                                </li>
+                                                <li class="pl0 pr15">
+                                                    <a class="comments">
+                                                        评论2
+                                                    </a>
+                                                </li>
+                                                <li class="pl0 pr15">
+                                                    <a class="comments">
+                                                        浏览2
+                                                    </a>
+                                                </li>
+                                                <li class="pl0 pr15">
+                                                    <a href="../home/userspace/article/edit.html">编辑</a>
+                                                </li>
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/问题盒子-->
+
+                        <!--回答记录-->
+                        <div class="box box-solid" id="answer-list">
+                            <div id="answer-list-replace">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">2个回答</h3>
+                                    <div class="dropdown pull-right">
+                                        <input type="hidden" id="orderby" >
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                                            排序 <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li role="presentation">
+                                                <a class="answer-orderby" href="javascript:void(0)"
+                                                   data-orderby="createTime">
+                                                    <i class="fa fa-check text-success" aria-hidden="true" ></i>回答时间</a>
+                                                     
+                                            </li>
+                                            <li role="presentation">
+                                                <a class="answer-orderby" href="javascript:void(0)"
+                                                   data-orderby="zanSize">
+                                                    <i class="fa fa-check text-success" aria-hidden="true" ></i>点赞数</a>
+                                                     
+                                            </li>
+                                            <li role="presentation">
+                                                <a class="answer-orderby" href="javascript:void(0)"
+                                                   data-orderby="commentSize">
+                                                    <i class="fa fa-check text-success" aria-hidden="true" ></i>回答数</a>
+                                                     
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <div class="post" >
+                                        <div class="row no-margin" >
+                                         
+                                            <div class="col-md-12 p10">
+                                                <div class="post-col">
+                                                    <div class="widget-vote ">
+                                                        <button type="button" class="like"  title="有用">                                                             
+                                                          
+                                                        </button>
+                                                        <span class="count" ></span>
+                                                        <button type="button" class="hate" title="没用"></button>
+                                                               
+                                                               
+                                                    </div>
+
+                                                    <!-- 该答案被采纳 -->
+                                                    <!--<div class="text-center text-green mt15" style="white-space:nowrap" >
+                                                        
+                                                        <i class="fa fa-check-circle accepted-check-icon"
+                                                           aria-hidden="true"></i><br>
+                                                        <span class="fontsize13">已采纳</span>
+                                                    </div>-->
+
+                                                </div>
+                                                <div class="post-offset">
+                                                    <a href="javascript:void(0)"    class="pull-right accept-answer"title="采纳答案双方都会获得声望值">采纳</a>
+                                                    
+                                                   
+                                                       
+                                                    <div class="answer-content" ></div>
+                                                    <ul class="list-inline answer-ul">
+                                                        <li>
+                                                            <a href="#" class="link-black">1回答</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:void(0)"
+                                                               class="link-black text-sm comment-answer"
+                                                              >
+                                                                <i class="fa fa-commenting mr4" aria-hidden="true"></i>
+                                                              2 评论
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:void(0)"
+                                                               class="comment-answer" title="回复"
+                                                               >
+                                                                回复
+                                                            </a>
+                                                        </li>
+                                                        <li class="pull-right hidden-xs">
+                                                            <div class="user-block">
+                                                                <img class="img-circle"
+                                                                    src="../../static/Cat.jpg">
+                                                                <span class="username">
+                                                                <a  class="text-blue">沈琪凯</a>
+                                                                  
+                                                            </span>
+                                                                <span class="description">20声望</span>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="clear"></div>
+                                                    <div class="widget-comments" style="display: none;">
+                                                        <div class="widget-comments__item hover-show " >
+                                                        
+                                                            <div class="comment-content wordbreak">
+                                                                <div class="fmt" style="display:inline-block">
+                                                                    <p></p>
+                                                                </div>
+                                                                <p class="comment-meta" style="display:inline-block">
+                                                                    <span> — </span>
+                                                                    <a  class="bold"
+                                                                       target="_blank">
+                                                                    沈琪凯</a> ·
+                                                                    <span class="createdDate"
+                                                                        >时间</span>
+                                                                    <a href="javascript:void(0)"
+                                                                       class="ml10 reply-answer" title="回复"
+                                                                     >
+                                                                        回复
+                                                                    </a>
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-comments__form row">
+                                                            <form class="clearfix" method="POST">
+                                                                <div class="form-group mb0 widget-comments__form--input">
+                                                                    <textarea rows="1" name="text"
+                                                                              class="form-control"
+                                                                              placeholder="评论内容"
+                                                                              style="overflow: hidden; word-wrap: break-word; height: 32px;"></textarea>
+                                                                </div>
+                                                                <div class="widget-comments__btn">
+                                                                    <div class="pull-right">
+                                                                        <button type="button"
+                                                                                class="btn btn-default postComment" >
+                                                                            
+                                                                            提交评论
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--分页-->
+                                
+								<!--分页-->
+								<div data-th-fragment="bottom-page">
+									<div class="bottom-page paging-box-big">
+
+										<a href="javascript:void(0)" class="page-link prev">上一页</a>
+
+										<a href="javascript:void(0)" class="page-link">1</a>
+
+										<a href="javascript:void(0)" class="page-link next">下一页</a>
+
+										<div class="page-jump">共<span>2</span>页，跳至
+											<input type="number" class="jump-page-size">页
+										</div>
+									</div>
+								</div>
+    
+                                
+                                    <!--/分页-->
+                                </div>
+                            </div>
+                        </div>
+                        <!--/回答记录-->
+
+
+                        <!--回答框盒子-->
+                        <div class="box box-solid" id="create-answer">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">撰写回答</h3>
+                            </div>
+                            <div class="box-body">
+                                <div id="comment-wrapper">
+                                    <div id="comment" class="comment-m">
+                                        <div class="common">
+                                            <div class="comment" style="position: relative;">
+                                                <div class="bb-comment ">
+                                                    <div class="comment-send">
+                                                        <div class="form-group">
+                                                         <textarea id="editor" name="content" class="form-control"
+                                                                   data-autosave="editor-content" autofocus
+                                                                   style="display: none;"></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="button" class="btn btn-primary"id="answer-submit" >
+                                                                    
+                                                                  
+                                                                提交回答
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/回答框框-->
+
+
+                    </div>
+                
+                </div>
+            </section>
+        </div>
+        <!-- /.container -->
+    </div>
+
+</div>
+
+
+<footer class="main-footer">
+    <div class="container" style="text-align: center;">
+        <strong>Copyright &copy; 2018 <a href="http://shenqikai.com">CatBlog</a></strong> <a href="http://www.miitbeian.gov.cn/" class="text-black" target="_blank">苏ICP备19003971号-1</a>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<script type="text/javascript" src="../../static/js/sticky.js"></script>
+	<script type="text/javascript" src="../../static/components/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../static/components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="../../static/js/script.js"></script>
+	<script type="text/javascript" src="../../static/components/adminlte/js/adminlte.min.js"></script>
+
+</body>
+</html>

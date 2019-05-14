@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="max-age=72000"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../static/components/bootstrap/dist/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="http://cdn.codergroup.cn/components/font-awesome/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="../../../../static/components/adminlte/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../../../../static/components/adminlte/css/skins/skin-green-light.min.css">
+    <link rel="stylesheet" href="../../../../static/css/style.css">
+    <link rel="stylesheet" href="../../../../static/components/layer/theme/default/layer.css">
+    <link rel="icon" href="../../../../static/Cat4.ico" type="image/x-icon"/>
+		<link rel="stylesheet" href="../../../../static/components/simditor/styles/simditor.css">
+		<link rel="stylesheet" href="../../../../static/components/simditor-html/css/simditor-html.css">
+<style>
+    .simditor, #title, .box {
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .simditor-wrapper {
+        min-height: 500px;
+    }
+
+    .simditor .simditor-body blockquote {
+        display: block;
+        padding: 16px;
+        margin: 15px 0;
+        border-left: 8px solid #3c8dbc;
+        background: #EEF0F4;
+        overflow: auto;
+        overflow-scrolling: touch;
+        word-wrap: normal;
+        word-break: normal;
+    }
+
+    .simditor .simditor-body blockquote p {
+        font-size: 14px;
+        line-height: 22px;
+        color: #999;
+        font-weight: 400;
+        margin-bottom: 0;
+    }
+
+
+</style>
+</head>
+<body class="hold-transition skin-green-light layout-top-nav">
+<div class="wrapper">
+	
+    	<header class="main-header">
+
+<body class="hold-transition skin-green-light layout-top-nav">
+<div class="wrapper">
+
+
+
+		<nav class="navbar navbar-static-top">
+			<div class="container">
+				<div class="navbar-header">
+					<a  href=" " class="navbar-brand">
+						<img src="" alt="" height="25">
+					</a>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+							data-target="#navbar-collapse">
+						<i class="fa fa-bars"></i>
+					</button>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+					<ul class="nav navbar-nav"  style="">
+					<form class="navbar-form navbar-left" action="/search/articles" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control global-search-input" name="keywords"
+								   id="main-search-input"
+								   placeholder="Search...">
+						</div>
+					</form>
+						<li style="padding-left: 40px;"><a  href="../../../index.html" class="active">首页</a></li>
+						
+						<li style="padding-left: 40px;"><a  href="../../article_list.html" class="active">日志 <span class="sr-only">(current)</span></a></li>
+						<li style="padding-left: 40px;"><a href="add.html">写日志 <span class="sr-only">(current)</span></a></li>
+						<li style="padding-left: 40px;"><a  href="../../question_list.html">问答</a></li>
+						<li style="padding-left: 40px;"><a href="../question/add.html">提问</a></li>
+						<li style="padding-left: 40px;"><a href="../../homepage/article.html">我的主页</a></li>
+					</ul>
+
+			
+					<!--<ul class="nav navbar-nav">
+						<li style="padding-left: 40px;"><a href="add.html">写日志 <span class="sr-only">(current)</span></a></li>
+						<li style="padding-left: 40px;"><a href="../question/add.html">提问</a></li>
+					</ul>-->
+				</div>
+
+				<div class="navbar-custom-menu" id="user-nav-wrapper">
+			
+					<ul class="nav navbar-nav" >
+						<li><a id="loginModalBtn" href="../templates/home/login/login.html">登录 </a></li>
+						<li><a href="../templates/home/login/register.html" target="_blank">注册</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+
+	
+	
+	
+   
+    
+    <div class="content-wrapper">
+
+        <div class="container">
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs"  style="margin-left: 670px;">
+                                <li><a href="../../userspace/article/list.html" target="_blank">文章管理</a></li>
+                                <li><a href="../category.html" target="_blank">分类管理</a></li>
+                                <li><a href="../comment.html" target="_blank">评论管理</a></li>
+                                <li><a href="../bookmark.html" target="_blank">收藏夹</a></li>
+                                <li class="pull-right"><a href="../../userspace/account/profile.html" class="text-muted" title="个人中心" target="_blank">
+                                                         
+                                        <i class="fa fa-gear"></i></a></li>
+                                <li class="pull-right"><a href="../../homepage/article.html"  target="_blank">我的主页</a></li>
+                                                        
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+              
+                    <div class="col-md-3" id="sidebar">
+                        <div class="box box-solid" style="border-top: 0;">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">发布</h3>
+                            </div>
+                            <div class="form-horizontal">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label"><i class="fa fa-key"></i> 状态</label>
+
+                                        <div class="col-md-6">
+                                            <select class="form-control input-flat" name="status" id="status">
+                                                <option value="publish">已发布</option>
+                                                <option value="draft">草稿</option>
+                                                <option value="private">私密</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label"><i class="fa fa-comments"></i> 评论</label>
+                                        <div class="col-md-6">
+                                            <select class="form-control input-flat" name="isAllowComment"
+                                                    id="isAllowComment">
+                                                <option value="0">允许</option>
+                                                <option value="1">禁止</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">
+                                    <!--<button type="submit" class="btn btn-default btn-sm">保存草稿</button>-->
+                                    <button type="button" class="btn btn-primary pull-right" id="article-submit">发布
+                                    </button>
+                                </div>
+                                <!-- /.box-footer -->
+                            </div>
+                        </div>
+
+                        <div class="box box-solid" style="border-top: 0;">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">分类</h3>
+                            </div>
+                            <div class="box-body">
+                                <select class="form-control input-flat" id="category" name="category">
+                                    <option value="0" selected disabled>请选择</option>
+                                    <option ></option> <!--这里需要遍历分类名称-->
+                                </select>
+                            </div>
+                            <div class="box-footer">
+                                <a href="javascript:void(0)" class="bold" id="add-category-btn">+ 添加新分类</a>
+                                <div class="input-group input-group-md" id="add-category-input" style="display: none;">
+                                    <input type="text" class="form-control input-flat" id="category_name">
+                                    <span class="input-group-btn">
+                                      <button type="button" class="btn btn-primary btn-flat"
+                                              id="category-submit">添加</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="box box-solid" style="border-top: 0;">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">标签</h3>
+                            </div>
+                            <div class="box-body">
+                                <input type="text" class="form-control input-flat"
+                                       name="tags" id="tags" placeholder="如：Java,面试,华为"
+                                       oninput="if(value.length>30)value=value.slice(0,30)">
+                                <span class="help-block text-maroon">以逗号(,或，)分隔，最多5个</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    
+                          <div class="col-md-9">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-lg input-flat"
+                                   name="title" id="title" placeholder="标题：沈琪凯是最帅的">
+                        </div>
+                        <div class="form-group">
+                         <textarea id="editor" name="content" class="form-control" style="display: none;"
+                                   data-autosave="editor-content" autofocus></textarea>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+        <!-- /.container -->
+    </div>
+</div>
+
+
+<footer class="main-footer">
+    <div class="container" style="text-align: center;">
+        <strong>Copyright &copy; 2018 <a href="http://shenqikai.com">CatBlog</a></strong> <a href="http://www.miitbeian.gov.cn/" class="text-black" target="_blank">苏ICP备19003971号-1</a>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<div class="modal fade in" id="loginModal">
+    <div class="modal-dialog modal-sm" style="width:350px;">
+        <div class="modal-content" style="border:none;">
+            <div class="modal-header">
+                <button type="button" id="login_close" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="loginModalLabel" style="font-size: 18px;">快速登录</h4>
+            </div>
+            <div class="modal-body" id="login-modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../../../static/components/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../static/components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../../static/components/layer/layer.js"></script>
+<script type="text/javascript" src="../../../../static/js/script.js"></script>
+<script type="text/javascript" src="../../../../static/components/adminlte/js/adminlte.min.js"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?73151ce4e3789ae86d394e4b23743b8b";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="../../../../static/components/simditor/scripts/module.js"></script>
+<script type="text/javascript" src="../../../../static/components/simditor/scripts/hotkeys.js"></script>
+<script type="text/javascript" src="../../../../static/components/simditor/scripts/uploader.js"></script>
+<script type="text/javascript" src="../../../../static/components/simditor/scripts/simditor.js"></script>
+<script type="text/javascript"
+        src="../../../../static/components/simditor-autosave/js/simditor-autosave.js"></script>
+<script type="text/javascript" src="../../../../static/components/simditor-mark/js/simditor-mark.js"></script>
+<script type="text/javascript" src="../../../../static/components/simditor-html/js/beautify-html.js"></script>
+<script type="text/javascript" src="../../../../static/components/simditor-html/js/simditor-html.js"></script>
+<script type="text/javascript" src="../../../../static/js/userspace/article.js"></script>
+<script>
+
+    toolbar = ['title', 'bold', 'mark', 'italic', 'underline', 'fontScale',
+        'color', 'ol', 'ul', 'blockquote', 'code', 'table',
+        'link', 'image', 'hr', 'indent', 'outdent', 'alignment', 'html'];
+    var editor = new Simditor({
+        textarea: $('#editor'),
+        placeholder: '这里输入内容...',
+        pasteImage: true,
+        toolbarFloat: true,
+        toolbar: toolbar,  //工具栏
+        defaultImage: '/components/simditor/images/image.png', //编辑器插入图片时使用的默认图片
+        upload: {
+            url: "/upload", //文件上传的接口地址
+            fileKey: 'upload_file', //服务器端获取文件数据的参数名
+            connectionCount: 3,
+            leaveConfirm: '正在上传文件'
+        },
+    });
+
+</script>
+<script type="text/javascript" src="../../../../static/js/sticky.js"></script>
+</body>
+</html>

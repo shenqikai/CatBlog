@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="max-age=72000" />
+    <title>注册</title>
+    <link  rel="icon"    href="../../../static/cat4.ico" type="image/x-icon" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <link rel="stylesheet" href="../../../static/components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../static/components/adminlte/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../../../static/css/style.css">
+    <link rel="stylesheet" href="../../../static/components/layer/theme/default/layer.css">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a href=""><b>Cat</b>Blog</a>
+    </div>
+    <div class="login-box-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="nav-tabs-custom">
+
+
+<ul class="nav nav-tabs" style="margin-left: 40px;">
+    <li><a href="#login-tab" data-toggle="tab" aria-expanded="false">登录</a></li>
+    <li class="active"><a href="#register-tab" data-toggle="tab" aria-expanded="false">注册</a></li>
+    <li><a href="#forget-tab" data-toggle="tab" aria-expanded="false">找回密码</a></li>
+</ul>
+<div class="tab-content">
+
+    <div class="tab-pane" id="login-tab">
+        <p class="login-box-msg text-success">请输入您的用户名和密码</p>
+        <form id="loginForm">
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" name="username" placeholder="用户名或邮箱">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" name="password" placeholder="密码">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control pull-left margin-r-5" name="kaptcha" id="kaptcha"
+                       style="width: 50%;"
+                       placeholder="验证码">
+                <img src="../../../static/Cat.jpg" width="80" height="34"
+                     class="captcha changeCaptcha pull-left margin-r-5" alt="验证码"/>
+                <a href="javascript:void(0)" class="changeCaptcha">换一张</a>
+                <div class="clear"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="remember-me" checked> 记住我的登录信息
+                        </label>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat" id="login-btn">登录</button>
+                    <br>
+                </div>
+                <div class="col-xs-12">
+                    <div class="threeLogin">
+                        <span>第三方账号登录</span>
+                        <a class="qq"
+                           href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101472393&redirect_uri=http://codergroup.cn/oauth/qq/callback&scope=get_user_info"
+                           target="_blank"></a>
+      
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="tab-pane active" id="register-tab">
+        <p class="login-box-msg text-success">注册一个账号，赶快加入我们</p>
+
+        <form id="registerForm" class="userForm">
+            <div class="form-group has-primary has-feedback">
+                <input type="text" class="form-control" name="username" id="username"
+                       placeholder="用户名">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-primary has-feedback">
+                <input type="email" class="form-control" name="email" placeholder="电子邮箱">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group  has-primary has-feedback">
+                <input type="password" class="form-control" name="password" placeholder="密码">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="form-group  has-primary has-feedback">
+                <input type="password" class="form-control" name="confirm_password"
+                       placeholder="确认密码">
+                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+            </div>
+            <div class="form-group  has-primary has-feedback">
+                <input type="text" class="form-control pull-left margin-r-5" id="register-kaptcha" name="kaptcha"
+                       style="width: 50%;" placeholder="验证码">
+                <img src="../../../static/Cat.jpg" width="80" height="34"
+                     class="captcha changeCaptcha pull-left margin-r-5" alt="验证码"/>
+                <a href="javascript:void(0)" class="changeCaptcha">换一张</a>
+                <div class="clear"></div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-xs-12">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="agree" id="agree" checked> 我同意<a th:href="@{/bulletins/uprotocol}" target="_blank">用户协议</a>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat" id="register-btn">注册</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+    </div>
+
+    <div class="tab-pane" id="forget-tab">
+        <p class="login-box-msg text-success">我们会向你的邮箱发送一封邮件，你可以点击链接重置密码</p>
+
+        <form id="forgetForm">
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" name="username" id="forget-username" placeholder="用户名">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="email" class="form-control" placeholder="电子邮箱" id="forget-email" name="email">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control pull-left margin-r-5" id="forget-kaptcha" name="kaptcha"
+                       style="width: 50%;"
+                       placeholder="验证码">
+                <img src="../../../static/Cat.jpg" width="80" height="34"
+                     class="captcha changeCaptcha pull-left margin-r-5" alt="验证码"/>
+                <a href="javascript:void(0)" class="changeCaptcha">换一张</a>
+            </div>
+            <div class="row">
+                <br>
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat" id="forget-btn">找回密码</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+                   </div>
+        </div>
+    </div>
+    <a href="../../index.html">← 返回到CatBlog</a>
+    </div>
+</div>
+<script type="text/javascript" src="../../../static/components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="../../../static/js/script.js"></script>
+<script type="text/javascript" src="../../../static/components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../static/components/bootstrap-validator/bootstrapValidator.js"></script>
+<script type="text/javascript" src="../../../static/components/layer/layer.js"></script>
+<script type="text/javascript" src="../../../static/js/login.js"></script>
+</body>
+</html>
+

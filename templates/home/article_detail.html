@@ -1,0 +1,618 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="max-age=72000"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/components/bootstrap/dist/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="http://cdn.codergroup.cn/components/font-awesome/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="../../static/components/adminlte/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../../static/components/adminlte/css/skins/skin-green-light.min.css">
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="../../static/components/layer/theme/default/layer.css">
+    <link rel="stylesheet" href="../../static/css/comment.min.css">
+    <link rel="stylesheet" href="../../static/components/highlight/styles/github-gist.css">
+    <link rel="stylesheet" href="../../static/components/simditor/styles/simditor.css">
+    <link rel="icon" href="../../static/Cat4.ico" type="image/x-icon"/>
+    <style>
+        .simditor {
+            border: 0 !important;
+        }
+
+        .simditor-body {
+            padding: 0 !important;
+
+        }
+        .simditor .simditor-body blockquote {
+            display: block;
+            padding: 16px;
+            margin: 15px 0;
+            border-left: 8px solid #3c8dbc;
+            background: #EEF0F4;
+            overflow: auto;
+            overflow-scrolling: touch;
+            word-wrap: normal;
+            word-break: normal;
+        }
+
+        .simditor .simditor-body blockquote p {
+            font-size: 14px;
+            line-height: 22px;
+            color: #999;
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+        
+    
+/* 下拉按钮样式 */
+.dropbtn {
+    
+
+    background: white;
+    font-size: 10px;
+    border: none;
+     
+    height: 20px;
+    width: 20px;
+}
+
+/* 容器 <div> - 需要定位下拉内容 */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* 下拉内容 (默认隐藏) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 80px;
+    min-height: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* 下拉菜单的链接 */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* 鼠标移上去后修改下拉菜单链接颜色 */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* 在鼠标移上去后显示下拉菜单 */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* 当下拉内容显示后修改下拉按钮的背景颜色 */
+.dropdown:hover .dropbtn {
+    background-color: white;
+}
+
+        
+    </style>
+
+</head>
+
+
+	
+	
+    	<header class="main-header">
+
+<body class="hold-transition skin-green-light layout-top-nav">
+<div class="wrapper">
+
+
+
+		<nav class="navbar navbar-static-top">
+			<div class="container">
+				<div class="navbar-header">
+					<a  href=" " class="navbar-brand">
+						<img src="" alt="" height="25">
+					</a>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+							data-target="#navbar-collapse">
+						<i class="fa fa-bars"></i>
+					</button>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+					<ul class="nav navbar-nav"  style="">
+					<form class="navbar-form navbar-left" action="/search/articles" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control global-search-input" name="keywords"
+								   id="main-search-input"
+								   placeholder="Search...">
+						</div>
+					</form>
+						<li style="padding-left: 40px;"><a  href="../index.html" class="active">首页</a></li>
+						<li style="padding-left: 40px;"><a  href="../home/article_list.html" class="active">日志</a></li>
+						<li style="padding-left: 40px;"><a href="../home/userspace/article/add.html">写日志 </a></li>
+						<li style="padding-left: 40px;"><a  href="../home/question_list.html">问答</a></li>
+						<li style="padding-left: 40px;"><a href="../templates/home/userspace/question/add.html">提问</a></li>
+						<li style="padding-left: 40px;"><a href="../home/homepage/article.html">我的主页</a></li>
+					</ul>
+
+			
+					<!--<ul class="nav navbar-nav">
+					
+						<li style="padding-left: 40px;"><a href="../templates/home/userspace/question/add.html">提问</a></li>
+					</ul>-->
+				</div>
+
+				<div class="navbar-custom-menu" id="user-nav-wrapper">
+			
+					<ul class="nav navbar-nav" >
+						<li><a id="loginModalBtn" href="../templates/home/login/login.html">登录 </a></li>
+						<li><a href="../templates/home/login/register.html" target="_blank">注册</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+    
+    
+    <div class="content-wrapper">
+        <div class="container">
+            <section class="content">
+                <div class="row">
+                	
+                	
+                    <div class="col-md-3 hidden-xs" id="sidebar">
+
+                        <div class="box box-solid">
+                            <div class="box-body box-profile">
+                                <a >
+                                    <img class="profile-user-img img-responsive img-circle" src="../../static/Cat2.ico"
+                                         alt="User profile picture">
+                                </a>
+                                <h3 class="profile-username text-center">沈琪凯</h3>
+                                <p class="text-muted text-center">Java工程师</p>
+
+                                <ul class="list-group list-group-unbordered">
+                                    <li class="list-group-item">
+                                        <b>粉丝</b> <a class="pull-right" >1,322</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>关注</b> <a class="pull-right" >543</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>声望</b> <a class="pull-right" >1223</a>
+                                    </li>
+                                </ul>
+
+                                <div class="clear"></div>
+                                <a href="javascript:void(0)" class="btn btn-primary btn-block follow"                         
+                                   data-th-attr="data-uid=${article.user.id},data-isFollow=${isFollow}">
+                                    <span class="default-text"><b>关注</b></span>
+                                    <span class="hover-text"><b>关注</b></span>
+                                </a>
+                             
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">个人分类</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body" >
+
+                                <p class="text-muted category-item" >
+                                 
+                                    <a href="">Java</a>
+                                    <span class="pull-right">2篇</span>
+                  
+                                </p>
+                                  <p class="text-muted category-item" >
+                                 
+                                    <a href="">Java</a>
+                                    <span class="pull-right">2篇</span>
+                  
+                                </p>
+                                <div class="show-more">
+                                    <a href="javascript:void(0)">
+                                        <div class="list-inner text-center">显示更多...</div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">查看更多</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <strong><i class="fa fa-link margin-r-5"></i> 个人主页</strong>
+
+                                <p class="text-muted"><a href="http://shenqikai.com"  target="_blank">http://shenqikai.com</a></p>
+                                 
+                                <hr>
+                                
+                                <strong><i class="fa fa-qq margin-r-5"></i>联系方式</strong>
+
+                                <p class="text-muted"><span >1228394266</span></p>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-9" >
+                        <!--正文盒子-->
+                        <div class="box box-solid" id="primary">
+                            <div class="box-body">
+                                <div id="primary" class="content-area">
+
+                                    <ol class="breadcrumb">
+                                        <li><a href="../index.html">首页</a>
+                                        <li><a href="" >沈琪凯</a>
+                                        </li>
+                                        <li>
+                                            <a > 类别</a></li>
+                                        <li class="active">正文</li>
+                                        
+                           <!--<li class="l-hide">                                          	
+                                <a href="javascript:pr()" title="侧边栏">
+                                    <i class="fa fa-caret-left"></i>
+                                    <i class="fa fa-caret-right"></i>
+                                </a>
+                            </li>-->
+                                        
+                                    </ol>
+
+                                    <header class="entry-header">
+                                        <h1 class="entry-title">
+                                            <!--<span class="text-maroon" >[置顶]</span>
+                                            <span class="text-danger" >[草稿]</span>
+                                            <span class="text-warning">[私密]</span>-->
+                                                  这里是标题
+                                            
+                                        </h1>
+                                    </header>
+
+                                    <div id="article-info-ul">
+                                        <ul class="list-inline">
+                                            <li>
+                                                <a  class="link-black">                                               
+                                                    <i class="fa fa-bookmark margin-r-5"></i>
+                                                    <span>类别</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <span class="link-black">
+                                                    <i class="fa fa-eye margin-r-5"></i>
+                                                    <span  class="viewSize">21</span>人阅读
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <a href="#comment" class="link-black">
+                                                    <i class="fa fa-comments-o margin-r-5"></i>评论20</a>
+                                            </li>
+                                            <li>
+                                                <span class="link-black">
+                                                    <i class="fa fa-clock-o margin-r-5"></i>
+                                                                                                                               三天前
+                                                </span>
+                                            </li>
+                                            <li class="pull-right">
+                                                <a  class="text-info" href="../home/userspace/article/edit.html" >编辑</a>
+                                                 
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <hr>
+                                    <div class="simditor">
+                                        <div class="simditor-body" >
+                                        	这里是内容
+                                        </div>
+                                    </div>
+                                    <!--点赞收藏块 -->
+                                    <div class="single-share text-center">
+                                        <ul class="list-unstyled list-inline">
+                                            <li>
+                                                <a class="btn zan" href="javascript:void(0);"
+                                                   data-th-attr="data-article-id=*{id}">
+                                                    <i class="fa fa-thumbs-up"></i>&nbsp;赞
+                                                    (<span class="article-zan-num" ></span>)
+                                                </a>
+
+                                            </li>
+                                            <li><a class="btn article-bookmark">
+                                                <i class="fa fa-bookmark"></i>&nbsp;<span
+                                                    class="bookmark-tips">收藏</span>(<span class="article-bookmark-num">20</span>)</a>
+                                                                                        
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <!--/点赞收藏块 -->
+
+
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                <p>文章标签：
+                                    <a class="label"   >12
+                                     
+                                    达瓦 
+                                        <span>12</span>
+                                    </a>
+                                <p>
+
+                            </div>
+                        </div>
+                        <!--/正文盒子-->
+
+                        <!--评论盒子-->
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">发表评论</h3>
+                            </div>
+                            <div class="box-body">
+                                <div id="comment-wrapper">
+                                    <div id="comment" class="comment-m">
+                                        <div class="common">
+                                            <div class="b-head">
+                                                <span class="b-head-t results" th:text="${commentSize}"></span>
+                                                <span class="b-head-t">评论</span>
+                                            </div>
+                                            <div class="comment" style="position: relative;">
+                                                <div class="bb-comment ">
+                                                    <div class="reply-notice"></div>
+                                                    <div class="comment-header clearfix">
+                                                        <div class="tabs-order">
+                                                            <ul class="clearfix">
+                                                                <li class="new-sort"  >最新评论
+                                                                
+                                                                </li>
+                                                                <li class="hot-sort"style="display: list-item;">
+                                                                    
+                                                                    
+                                                                    按热度排序
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+
+                                                    </div>
+                                                    <!--评论-->
+                                         
+
+                                                        <!--评论框-->
+                                                        <div class="comment-send" >
+                                                            <div class="user-face">
+
+                                                                <img  src="../../static/Cat2.ico" alt="" class="user-head" >
+
+                                                            </div>
+                                                            <div class="textarea-container">
+                                                               
+                                                                 
+                                                                <textarea cols="80" name="content" rows="5"
+                                                                          placeholder="发言！"
+                                                                          class="comment-content"></textarea>
+                                                                <button type="button" class="comment-submit">发表评论
+                                                                </button>
+                                                            </div>
+                                                         
+                                                
+
+                                                        </div>
+                                                        
+                                                       
+                                                        <!--/评论框-->
+                                                        <!--评论列表-->
+                                                        <div class="comment-list">
+                                                            <div class="list-item reply-wrap" >                                                     
+                                                                <div class="user-face">
+                                                                    <a href=""target="_blank" >                                                                 
+                                                                        <img class="comment-user-avatar"
+                                                                           src="../../static/Cat.jpg"  >
+                                                                    </a>
+                                         
+                                                                </div>
+                                                                <div class="con">
+                                                                    <div class="user">
+                                                                        <a href="" target="_blank"  class="name" >沈琪凯</a>
+
+                                                                     
+                                                                    </div>
+
+                                                                    <p class="text"><span class="stick">置顶</span>
+                                                                    	我是最帅
+
+                                                                    </p>
+                                                                    <div class="info">
+                                                                        <span class="floor" >1楼</span>
+                                                                        <span class="time" >三天前</span>
+																																								<!--点赞-->
+                                                                        <span class="like" >
+                                                                             
+                                                                            <i></i><span>32</span></span>
+                                                                            <!--点菜-->
+                                                                        <span class="hate" >
+                                                                            
+                                                                            <i></i><span>2</span></span>
+
+                                                                        <span class="reply btn-hover" >回复</span>
+
+                                                                        <!--<div class="operation">
+                                                                            <div class="spot"></div>
+                                                                            <div class="opera-list" >
+                                                                                <ul>
+                                                                                    <li class="comment-stick-btn" >
+                                                                                                                                                                                    置顶
+                                                                                    </li>
+                                                                                    <li class="comment-cancel-stick-btn">
+                                                                                                                                                                                       取消置顶
+                                                                                    </li>
+                                                                                    <li class="comment-delete-btn">
+
+                                                                                                                                                                                     删除
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>-->
+                                                                        <div class="dropdown">
+																																			  <button class="dropbtn">更多</button>
+																																			  <div class="dropdown-content">
+																																			    <a href="#">置顶</a>
+																																			    <a href="#">删除</a>
+																																			   
+																																			  </div>
+																																			</div>
+                                                                        
+                                                                        
+                                                                    </div>
+                                                                    <div class="reply-box">
+                                                                        <div class="reply-item reply-wrap" >
+
+                                                                          
+                                                                            <a
+                                                                               target="_blank" class="reply-face">
+                                                                                <img src="../../static/Cat.jpg"
+                                                                                     >
+                                                                            </a>
+                                                                            <div class="reply-con">
+                                                                                <div class="user">
+                                                                                    <a href="" target="_blank" class="name ">沈琪凯</a>
+                                                                                      
+                                                                                      
+                                                                                      
+                                                                                    <a href="" target="_blank">
+                                                                                     
+                                                                                    </a>
+                                                                                    <span >回复
+                                                                                        <a  class="name">@沈琪凯</a>
+                                                                                    </span>：
+                                                                                    <span class="text-con" >我要变强</span>
+                                                                                </div>
+                                                                                <div class="info">
+                                                                                    <span class="time" >三天前</span>
+                                                                                        
+                                                                                    <span class="like" ><i></i>
+                                                                                    	<span>2</span></span>
+                                                                                        
+                                                                                         
+                                                                                    <span class="hate" ><i></i>
+                                                                                   	
+                                                                                   	<span >12</span></span>
+                                                                                        
+                                                                                          
+                                                                                    <span class="reply btn-hover">回复</span>
+                                                                                          
+                                                                                        
+                                                                     <div class="dropdown">
+																																			  <button class="dropbtn">更多</button>
+																																			  <div class="dropdown-content">
+																																			     <a href="#">置顶</a>
+																																			    <a href="#">删除</a>
+																																			  </div>
+																																			</div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <!--/评论列表-->
+
+                                                    
+                                                    
+                                                    <!--/评论-->
+                                                    <!--分页-->
+                                                    							<!--分页-->
+								<div data-th-fragment="bottom-page">
+    <div class="bottom-page paging-box-big"
+         data-th-attr="data-order=${commentOrder}">
+        <a href="javascript:void(0)" class="page-link prev"
+
+           data-th-attr="pageIndex=${page.number}">上一页</a>
+        <a href="javascript:void(0)" class="page-link"
+
+           data-th-attr="pageIndex=${i}">1</a>
+
+        <a href="javascript:void(0)" class="page-link next"
+
+           data-th-attr="pageIndex=${page.number+2}">下一页</a>
+        <div class="page-jump">共<span>2</span>页，跳至
+            <input type="number" class="jump-page-size">页
+        </div>
+    </div>
+</div>
+                                                    <!--/分页-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/评论盒子-->
+                    </div>
+
+                </div>
+            </section>
+        </div>
+        <!-- /.container -->
+    </div>
+
+</div>
+
+<footer class="main-footer">
+    <div class="container" style="text-align: center;">
+        <strong>Copyright &copy; 2018 <a href="http://shenqikai.com">CatBlog</a></strong> <a href="http://www.miitbeian.gov.cn/" class="text-black" target="_blank">苏ICP备19003971号-1</a>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<script type="text/javascript" src="../../static/components/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../static/components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../static/components/layer/layer.js"></script>
+<script type="text/javascript" src="../../static/js/script.js"></script>
+<script type="text/javascript" src="../../static/components/adminlte/js/adminlte.min.js"></script>
+
+<script type="text/javascript" src="../../static/components/jquery-cookie/jquery.cookie.js"></script>
+<script type="text/javascript" src="../../static/js/article-detail.js}"></script>
+<script type="text/javascript" src="../../static/components/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="../../static/components/lightbox/zoomify.min.css">
+<script src="../../static/components/lightbox/zoomify.min.js"></script>
+
+
+
+<script type="text/javascript" src="../../static/js/sticky.js"></script>
+
+
+<script type="text/javascript">
+
+// 隐藏侧边
+function pr() {
+	var L = document.getElementById("sidebar");
+	var R = document.getElementById("primary");
+	if (R.className == "sidebar") {
+		L.className = "sidebar-hide";
+		R.className = "";
+	} else {
+		L.className = "sidebar";
+		R.className = "primary";
+	}
+}
+</script>
+</body>
+</html>

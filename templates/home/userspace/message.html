@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      
+      
+      
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Cache-Control" content="max-age=72000" />
+		<meta name="_csrf" th:content="${_csrf.token}" />
+		<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../../static/components/bootstrap/dist/css/bootstrap.min.css">
+		<!--<link rel="stylesheet" href="http://cdn.codergroup.cn/components/font-awesome/css/font-awesome.min.css">-->
+		<link rel="stylesheet" href="../../../static/components/adminlte/css/AdminLTE.min.css">
+		<link rel="stylesheet" href="../../../static/components/adminlte/css/skins/skin-green-light.min.css">
+		<link rel="stylesheet" href="../../../static/css/style.css">
+		<link rel="stylesheet" href="../../../static/components/layer/theme/default/layer.css">
+		<link rel="icon" href="../../../static/Cat4.ico" type="image/x-icon" />
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../css/message.css">
+</head>
+
+    
+    	
+<header class="main-header">
+
+		<body class="hold-transition skin-green-light layout-top-nav">
+			<div class="wrapper">
+
+				<nav class="navbar navbar-static-top">
+					<div class="container">
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+							<ul class="nav navbar-nav" style="">
+								<form class="navbar-form navbar-left" action="/search/articles" role="search">
+									<div class="form-group">
+										<input type="text" class="form-control global-search-input" name="keywords" id="main-search-input" placeholder="Search...">
+									</div>
+								</form>
+								<li style="padding-left: 40px;">
+									<a href="index.html" class="active">首页</a>
+								</li>
+
+								<li style="padding-left: 40px;">
+									<a href="home/article_list.html" class="active">日志</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../templates/home/userspace/article/add.html">写日志</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="home/question_list.html">问答</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../templates/home/userspace/question/add.html">提问</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="home/homepage/article.html">我的主页</a>
+								</li>
+							</ul>
+
+						</div>
+
+						<div class="navbar-custom-menu" id="user-nav-wrapper">
+
+							<ul class="nav navbar-nav">
+								<li>
+									<a id="loginModalBtn" href="../templates/home/login/login.html">登录 </a>
+								</li>
+								<li>
+									<a href="../templates/home/login/register.html" target="_blank">注册</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+	</header>
+    
+    
+    
+    <div class="content-wrapper">
+        <div class="container">
+            <section class="content" id="mainContainer">
+                <div class="row" id="mainContainerReplace">
+                    <div class="col-md-4">
+                        <div class="box box-solid" id="message-userlist-box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">聊天列表</h3>
+                            </div>
+                            <p th:if="${chatList.size() == 0}" id="no-chat-tips">聊天列表为空</p>
+
+                            <div class="box-body no-padding" th:if="${chatList.size() != 0}">
+                                <div class="table-responsive mailbox-messages">
+                                    <table class="table table-hover">
+                                        <tbody>
+                                        <tr th:each="message,userStatus : ${chatList}" class="chat-list-tr"
+                                            th:id="${'listChat'+message.friend.id}"
+                                            data-th-attr="data-uid=${message.friend.id}">
+                                            <td class="mailbox-name" width="55">
+                                                <a th:href="@{'/'+${message.friend.username}}" target="_blank">
+                                                    <img th:src="${message.friend.avatar}"
+                                                         class="user-image">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <span th:text="${message.friend.nickname}"></span>
+                                                <span class="last-message-time pull-right"
+                                                      th:classappend="${message.status==1 ? 'text-maroon' : 'text-gray'}"
+                                                      th:text="${(message.createTime != null) ? message.easyCreateTime : '' }">三个月前</span>
+
+                                                <span class="pull-right text-green margin-r-5"
+                                                      th:if="${message.status==1}">有未读消息</span>
+
+                                                <p>
+                                                    <span th:text="${#strings.abbreviate(message.content,30)}"></span>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- /.table -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="box box-solid direct-chat direct-chat-primary"
+                             th:if="${friend}">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"><span th:text="${friend.nickname}" id="nickname-span"></span></h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="refresh"
+                                            id="refresh-message-btn"><i
+                                            class="fa fa-refresh"></i> 刷新
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" id="remove-message-btn"><i
+                                            class="fa fa-trash"></i> 删除
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div id="chat_container">
+                                    <div id="chat_content" class="ps-container">
+                                        <ul id="userchatUl" data-th-attr="data-uid=${friend.id}" class="userchatUl">
+
+                                            <li th:class="${message.user.id == message.sender.id ? 'me':'you'}"
+                                                th:each="message : ${messageList}">
+                                                <div class="chat_avata">
+                                                    <a th:href="@{'/'+${message.user.id == message.sender.id ? message.user.username : message.friend.username}}"
+                                                       target="_blank">
+                                                        <img width="40" height="40" class="img_border_one"
+                                                             th:src="${message.user.id == message.sender.id ? message.user.avatar : message.friend.avatar}">
+                                                    </a>
+                                                </div>
+                                                <div class="a_msg_info" id="3113152">
+                                                    <pre th:text="${message.content}"></pre>
+                                                    <i class="arrow_left_b"></i>
+                                                </div>
+                                                <small class="time"
+                                                       th:text="${message.easyCreateTime}"></small>
+                                            </li>
+                                        </ul>
+                                        <script>
+                                            var div = document.getElementById('chat_container');
+                                            div.scrollTop = div.scrollHeight;
+                                        </script>
+                                    </div>
+
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">
+                                    <div class="input-group">
+                                        <input type="text" name="content" id="message-content"
+                                               placeholder="输入您要发送的私信..."
+                                               class="form-control">
+                                        <span class="input-group-btn">
+                                            <button type="button" id="message-send-btn"
+                                                    class="btn btn-primary btn-flat">发送</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- /.box-footer-->
+                            </div>
+                        </div>
+                        <div class="box box-solid direct-chat direct-chat-primary" th:if="${friend == null}">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">请选择聊天对象</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div id="no-message-container">
+                                    <span id="no-message-tips">找个人聊天吧！</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{home/fragments/footer}"></footer>
+<script type="text/javascript" th:src="@{/js/userspace/message.js}"></script>
+</body>
+</html>

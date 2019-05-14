@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Cache-Control" content="max-age=72000" />
+		<meta name="_csrf" th:content="${_csrf.token}" />
+		<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../../../static/components/bootstrap/dist/css/bootstrap.min.css">
+		<!--<link rel="stylesheet" href="http://cdn.codergroup.cn/components/font-awesome/css/font-awesome.min.css">-->
+		<link rel="stylesheet" href="../../../../static/components/adminlte/css/AdminLTE.min.css">
+		<link rel="stylesheet" href="../../../../static/components/adminlte/css/skins/skin-green-light.min.css">
+		<link rel="stylesheet" href="../../../../static/css/style.css">
+		<link rel="stylesheet" href="../../../../static/components/layer/theme/default/layer.css">
+		<link rel="icon" href="../../../../static/Cat4.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="../../../../static/components/simditor/styles/simditor.css">
+		<link rel="stylesheet" href="../../../../static/components/simditor-html/css/simditor-html.css">
+<style>
+    .simditor, #tags, #title,#ask-submit {
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+    }
+    .simditor-wrapper {
+        min-height: 500px;
+    }
+    .simditor .simditor-body blockquote {
+        display: block;
+        padding: 16px;
+        margin: 15px 0;
+        border-left: 8px solid #3c8dbc;
+        background: #EEF0F4;
+        overflow: auto;
+        overflow-scrolling: touch;
+        word-wrap: normal;
+        word-break: normal;
+    }
+
+    .simditor .simditor-body blockquote p {
+        font-size: 14px;
+        line-height: 22px;
+        color: #999;
+        font-weight: 400;
+        margin-bottom: 0;
+    }
+</style>
+</head>
+
+    
+    	<header class="main-header">
+
+<body class="hold-transition skin-green-light layout-top-nav">
+<div class="wrapper">
+
+
+
+		<nav class="navbar navbar-static-top">
+			<div class="container">
+				<div class="navbar-header">
+					<a  href=" " class="navbar-brand">
+						<img src="" alt="" height="25">
+					</a>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+							data-target="#navbar-collapse">
+						<i class="fa fa-bars"></i>
+					</button>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+					<ul class="nav navbar-nav"  style="">
+					<form class="navbar-form navbar-left" action="/search/articles" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control global-search-input" name="keywords"
+								   id="main-search-input"
+								   placeholder="Search...">
+						</div>
+					</form>
+						<li style="padding-left: 40px;"><a  href="../../../index.html" class="active">首页</a></li>
+						
+						<li style="padding-left: 40px;"><a  href="../../article_list.html" class="active">日志 <span class="sr-only">(current)</span></a></li>
+						<li style="padding-left: 40px;"><a href="add.html">写日志 <span class="sr-only">(current)</span></a></li>
+						<li style="padding-left: 40px;"><a  href="../../question_list.html">问答</a></li>
+						<li style="padding-left: 40px;"><a href="add.html">提问</a></li>
+						<li style="padding-left: 40px;"><a href="../../homepage/article.html">我的主页</a></li>
+					</ul>
+
+			
+					<!--<ul class="nav navbar-nav">
+						<li style="padding-left: 40px;"><a href="add.html">写日志 <span class="sr-only">(current)</span></a></li>
+						<li style="padding-left: 40px;"><a href="add.html">提问</a></li>
+					</ul>-->
+				</div>
+
+				<div class="navbar-custom-menu" id="user-nav-wrapper">
+			
+					<ul class="nav navbar-nav" >
+						<li><a id="loginModalBtn" href="../templates/home/login/login.html">登录 </a></li>
+						<li><a href="../templates/home/login/register.html" target="_blank">注册</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+    
+    
+    <div class="content-wrapper">
+
+        <div class="container">
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <input type="hidden" id="question-id">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-lg" 
+                                   name="title" id="title" placeholder="要修改的标题"
+                                   style="border-radius: 0;">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control"  title="问题标签"
+                                   name="title" id="tags" placeholder="标签，如：java 可使用逗号(,或，)分隔，建议最多输入5个"
+                                   style="border-radius: 0;">
+                        </div>
+
+                        <div class="form-group">
+                        <textarea id="editor" name="content" class="form-control" th:text="*{content}"
+                                  data-autosave="editor-content" autofocus></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-primary" id="ask-submit">发布问题</button>
+                            </div>
+                        </div>
+
+                </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+</div>
+
+<footer class="main-footer">
+    <div class="container" style="text-align: center;">
+        <strong>Copyright &copy; 2018 <a href="http://shenqikai.com">CatBlog</a></strong> <a href="http://www.miitbeian.gov.cn/" class="text-black" target="_blank">苏ICP备19003971号-1</a>
+    </div>
+    <!-- /.container -->
+</footer>
+
+
+
+<script type="text/javascript" src="../../../../static/components/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../static/components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../../static/components/layer/layer.js"></script>
+<script type="text/javascript" src="../../../../static/js/script.js"></script>
+<script type="text/javascript" src="../../../../static/components/adminlte/js/adminlte.min.js"></script>
+
+
+<script type="text/javascript" src="../../../../static/components/simditor/scripts/module.js"></script>
+<script type="text/javascript" src="../../../../static/components/simditor/scripts/hotkeys.js"></script>
+<script type="text/javascript" src="../../../../static/components/simditor/scripts/uploader.js"></script>
+<script type="text/javascript" src="../../../../static/components/simditor/scripts/simditor.js"></script>
+<script type="text/javascript"
+        src="../../../../static/components/simditor-autosave/js/simditor-autosave.js"></script>
+<script type="text/javascript" src="../../../../static/components/simditor-mark/js/simditor-mark.js"></script>
+<script type="text/javascript" src="../../../../static/components/simditor-html/js/beautify-html.js"></script>
+<script type="text/javascript" src="../../../../static/components/simditor-html/js/simditor-html.js"></script>
+<script type="text/javascript" src="../../../../static/js/userspace/article.js"></script>
+<script>
+
+    toolbar = ['title', 'bold', 'mark', 'italic', 'underline', 'fontScale',
+        'color', 'ol', 'ul', 'blockquote', 'code', 'table',
+        'link', 'image', 'hr', 'indent', 'outdent', 'alignment', 'html'];
+    var editor = new Simditor({
+        textarea: $('#editor'),
+        placeholder: '1、描述你的问题 <br/><br/> 2、贴出相关代码 <br/><br/> 3、贴出报错信息  <br/><br/> 4、贴出相关截图 <br/><br/>   5、已经尝试过哪些方法仍然没有解决(附上相关链接)',
+        pasteImage: true,
+        toolbarFloat: true,
+        toolbar: toolbar,  //工具栏
+        defaultImage: '/components/simditor/images/image.png', //编辑器插入图片时使用的默认图片
+        upload: {
+            url: "/upload", //文件上传的接口地址
+            fileKey: 'upload_file', //服务器端获取文件数据的参数名
+            connectionCount: 3,
+            leaveConfirm: '正在上传文件'
+        },
+    });
+
+
+</script>
+</body>
+</html>

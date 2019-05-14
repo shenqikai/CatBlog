@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      
+      
+      
+      
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Cache-Control" content="max-age=72000" />
+		<meta name="_csrf" th:content="${_csrf.token}" />
+		<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../../static/components/bootstrap/dist/css/bootstrap.min.css">
+		<!--<link rel="stylesheet" href="http://cdn.codergroup.cn/components/font-awesome/css/font-awesome.min.css">-->
+		<link rel="stylesheet" href="../../../static/components/adminlte/css/AdminLTE.min.css">
+		<link rel="stylesheet" href="../../../static/components/adminlte/css/skins/skin-green-light.min.css">
+		<link rel="stylesheet" href="../../../static/css/style.css">
+		<link rel="stylesheet" href="../../../static/components/layer/theme/default/layer.css">
+		<link rel="icon" href="../../../static/Cat4.ico" type="image/x-icon" />
+
+
+
+
+
+
+<style>
+    div.article-list-item {
+        border: none;
+        padding-top: 8px;
+    }
+
+    div.article-list-item p.no-content {
+        padding-top: 169px;
+        font-size: 14px;
+        color: #999999;
+    }
+
+    div.article-list-item ul {
+        padding: 0;
+        margin: 0;
+        margin-bottom: 16px;
+        list-style-type: none;
+    }
+
+    div.article-list-item ul.comment-list {
+        padding: 0;
+    }
+
+    div.article-list-item ul.comment-list.my-comment li {
+        padding-left: 0;
+    }
+
+    div.article-list-item ul.comment-list li {
+        padding: 7px 0 12px;
+        padding-left: 40px;
+        font-size: 14px;
+        color: #4F4F4F;
+        line-height: 22px;
+        border-bottom: 1px dashed #DDDDDD;
+    }
+
+    div.article-list-item ul.comment-list li:hover div.content-box div.title div.opt-box {
+        display: block;
+    }
+
+    div.article-list-item ul.comment-list li div.img-avatar-box {
+        margin-left: -40px;
+        float: left;
+    }
+
+    div.article-list-item ul.comment-list li div.img-avatar-box img {
+        border-radius: 50%;
+        border: 1px solid #E9E9E9;
+    }
+
+    div.article-list-item ul.comment-list li div.content-box a {
+        font-size: 14px;
+        line-height: 32px;
+        cursor: pointer;
+        transition: color 0.5s ease-out;
+    }
+
+    div.article-list-item ul.comment-list li div.content-box a.c-blue {
+        color: #349EDF;
+    }
+
+    div.article-list-item ul.comment-list li div.content-box a.c-blue:hover {
+        color: #1780BF;
+    }
+
+    div.article-list-item ul.comment-list li div.content-box a.c-red {
+        color: #CA0C16;
+    }
+
+    div.article-list-item ul.comment-list li div.content-box a.c-red:hover {
+        color: #B50C13;
+    }
+
+    div.article-list-item ul.comment-list li div.content-box a.icon-split {
+        padding-right: 8px;
+        margin-right: 8px;
+        border-right: 1px solid #E9E9E9;
+    }
+
+    div.article-list-item ul.comment-list li div.content-box div.title {
+        margin-bottom: 8px;
+        min-height: 22px;
+        color: #999;
+    }
+
+    div.article-list-item ul.comment-list li div.content-box div.title span {
+        margin-right: 8px;
+    }
+
+    div.article-list-item ul.comment-list li div.content-box div.title span.user-name {
+        color: #4F4F4F;
+    }
+
+    div.article-list-item ul.comment-list li div.content-box div.title span.author-name {
+        color: #4F4F4F;
+    }
+
+    div.article-list-item ul.comment-list li div.content-box div.title a.article-title {
+        margin-right: 8px;
+    }
+
+    div.article-list-item ul.comment-list li div.content-box div.title div.opt-box {
+        float: right;
+        display: none;
+        height: 22px;
+    }
+
+    div.article-list-item ul.comment-list li div.content-box div.comment-box {
+        position: relative;
+        margin-top: 8px;
+        padding: 0;
+        line-height: 22px;
+        word-wrap: break-word;
+    }
+
+    div.article-list-item ul.comment-list li div.content-box div.comment-box svg.icon-yinhao {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        fill: #d4d4d4;
+    }
+
+    div.article-list-item ul.comment-list li div.reply-box {
+        margin-top: 8px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+    }
+
+    div.article-list-item ul.comment-list li div.reply-box.d-n {
+        display: none;
+    }
+
+    div.article-list-item ul.comment-list li div.reply-box div {
+        margin-right: 8px;
+    }
+
+    div.article-list-item ul.comment-list li div.reply-box div.img-box img {
+        border-radius: 50%;
+        border: 1px solid #E9E9E9;
+    }
+
+    div.article-list-item ul.comment-list li div.reply-box div.ipt-box {
+        width: 100%;
+    }
+
+    div.article-list-item ul.comment-list li div.reply-box div.ipt-box input.txt-block {
+        display: block;
+        width: 100%;
+        height: 32px;
+        padding: 0 8px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        background-color: #fafafa;
+        transition: border 0.5s ease-out;
+    }
+
+    div.article-list-item ul.comment-list li div.reply-box div.ipt-box input.txt-block:focus {
+        border: 1px solid #4F4F4F;
+        color: #4F4F4F;
+        outline: none;
+    }
+
+    div.article-list-item ul.comment-list li div.reply-box div.opt-box button.btn-reply {
+        padding: 8px 16px;
+        font-size: 14px;
+        line-height: 1;
+        background-color: transparent !important;
+        border: 1px solid #CA0C16;
+        border-radius: 4px;
+        color: #CA0C16;
+        cursor: pointer;
+        transition: all 0.3s ease-in;
+    }
+
+    div.article-list-item ul.comment-list li div.reply-box div.opt-box button.btn-reply:hover {
+        background-color: #CA0C16;
+        color: #fff;
+    }
+
+    div.article-list-item ul.comment-list li div.reply-box div.opt-box button.btn-reply[disabled] {
+        border-color: #d6d6d6;
+        cursor: not-allowed;
+        color: #d6d6d6;
+    }
+
+    div.article-list-item ul.comment-list li div.reply-box div.opt-box button.btn-reply[disabled]:hover {
+        background-color: #fff !important;
+        color: #d6d6d6;
+    }
+
+    #tab-content {
+        padding: 15px;
+    }
+
+</style>
+</head>
+
+	
+
+
+<header class="main-header">
+
+		<body class="hold-transition skin-green-light layout-top-nav">
+			<div class="wrapper">
+
+				<nav class="navbar navbar-static-top">
+					<div class="container">
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+							<ul class="nav navbar-nav" style="">
+								<form class="navbar-form navbar-left" action="/search/articles" role="search">
+									<div class="form-group">
+										<input type="text" class="form-control global-search-input" name="keywords" id="main-search-input" placeholder="Search...">
+									</div>
+								</form>
+								<li style="padding-left: 40px;">
+									<a href="index.html" class="active">首页</a>
+								</li>
+
+								<li style="padding-left: 40px;">
+									<a href="home/article_list.html" class="active">日志</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../templates/home/userspace/article/add.html">写日志</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="home/question_list.html">问答</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../templates/home/userspace/question/add.html">提问</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="home/homepage/article.html">我的主页</a>
+								</li>
+							</ul>
+
+						</div>
+
+						<div class="navbar-custom-menu" id="user-nav-wrapper">
+
+							<ul class="nav navbar-nav">
+								<li>
+									<a id="loginModalBtn" href="../templates/home/login/login.html">登录 </a>
+								</li>
+								<li>
+									<a href="../templates/home/login/register.html" target="_blank">注册</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+	</header>
+    
+    
+
+    <div class="content-wrapper">
+
+        <div class="container">
+            <section class="content">
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="box box-solid collapsed-box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">个人中心</h3>
+                                <div class="box-tools">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body no-padding" style="display: none;">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="" target="_blank">我的主页</a></li>
+                                    <li><a href="">我的账号</a>
+                                    </li>
+                                    <li><a href="">关系管理</a></li>
+                                    <li><a href="">通知管理<span
+                                            class="label label-warning pull-right" >20</span></a></li>
+                                    <li><a href="" target="_blank">私信管理<span
+                                            class="label label-success pull-right" >20</span></a></li>
+
+                                </ul>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">文章管理</h3>
+                            </div>
+                            <div class="box-body no-padding">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="">发表文章</a></li>
+                                    <li><a href="../userspace/article/list.html">文章管理</a></li>
+                                    <li><a href="category.html"><i></i>个人分类管理</a></li>
+                                    <li class="active"><a href="comment.html"><i></i>评论管理</a></li>
+                                    <li><a href="bookmark.html">收藏夹</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="box box-solid collapsed-box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">问答管理</h3>
+                                <div class="box-tools">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-plus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                            class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body no-padding" style="display: none;">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="../userspace/question/question-list.html">我的问题</a></li>
+                                    <li><a href="../userspace/question/answer-list.html">我的回答</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">评论管理</h3>
+                            </div>
+
+                            <div class="box-body table-responsive" id="right-box-body">
+
+                                <div id="right-box-body-replace">
+
+                                    <div class="nav-tabs-custom" style="box-shadow: 0 0;">
+                                        <ul class="nav nav-tabs">
+                                            <li class="comment-tab" data-th-attr="data-comment-type=in">
+                                                <a href="javascript:void(0)" data-toggle="tab">我收到的评论(20)</a>
+                                            </li>
+                                            <li class="comment-tab" data-th-attr="data-comment-type=out" >
+                                                <a href="javascript:void(0)" data-toggle="tab">我发表的评论(20)</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content" id="tab-content">
+                                            <div class="tab-pane active" id="tab-pane" >
+                                          
+																											<!--这里要判断类型  -->
+                                                <div class="article-list-item" >
+                                                    <!--我收到的评论-->
+                                                    <ul class="comment-list">
+                                                        <li class="clearfix" >
+                                                            <div class="img-avatar-box">
+                                                                <img src="../../../static/Cat.jpg"
+                                                                     width="32" height="32">
+                                                            </div>
+                                                            <div class="content-box">
+                                                                <div class="title">
+                                                                    <span class="user-name">码云</span>
+                                                                    <span class="date">
+                                                                        <time >2周前</time></span>
+																																			
+                                                                    <!--<span >评论了你的文章</span>-->
+                                                                    <span >回复了你的评论，在<a>沈琪凯</a>的文章</span>
+
+
+                                                                    <a class="article-title c-blue" target="_blank" >
+                                                                    
+                                                                        </a>
+                                                                    <div class="opt-box clearfix">
+                                                                        <a href="../article_detail.html"    target="_blank">前往回复</a>
+                                                                        <a class="text-maroon delete-comment" href="javascript:void(0)" >删除</a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="comment-box">
+                                                                    <p>这里是评论内容</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    
+                                                                                    								<!--分页-->
+									<div data-th-fragment="bottom-page">
+										<div class="bottom-page paging-box-big">
+
+											<a href="javascript:void(0)" class="page-link prev">上一页</a>
+
+											<a href="javascript:void(0)" class="page-link">1</a>
+
+											<a href="javascript:void(0)" class="page-link next">下一页</a>
+
+											<div class="page-jump">共<span>2</span>页，跳至
+												<input type="number" class="jump-page-size">页
+											</div>
+										</div>
+									</div>
+
+                                                    
+                                                    
+                                                </div>
+
+
+                                                <div class="article-list-item" >
+                                                    <!--我发表的评论-->
+                                                    <ul class="comment-list">
+                                                        <li class="clearfix">
+                                                            <div class="img-avatar-box">
+                                                                <img src="../../../static/Cat.jpg"
+                                                                     width="32" height="32">
+                                                            </div>
+                                                            <div class="content-box">
+                                                                <div class="title">
+                                                                    <span class="user-name">我</span>
+                                                                    <span class="date">
+                                                                        <time >2周前</time></span>评论了
+                                                                        <a>沈琪凯</a> 的文章
+                                                                    <a class="article-title c-blue" target="_blank">标题
+                                                                     
+                                                                    </a>
+                                                                    <div class="opt-box clearfix">
+                                                                        <a href="../article_detail.html">前往查看</a>
+                                                                        <a class="text-maroon delete-comment" href="javascript:void(0)" >删除</a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="comment-box">
+                                                                    <p>这里是我发表的内容</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    
+                                                                                                                                  								<!--分页-->
+									<div data-th-fragment="bottom-page">
+										<div class="bottom-page paging-box-big">
+
+											<a href="javascript:void(0)" class="page-link prev">上一页</a>
+
+											<a href="javascript:void(0)" class="page-link">1</a>
+
+											<a href="javascript:void(0)" class="page-link next">下一页</a>
+
+											<div class="page-jump">共<span>2</span>页，跳至
+												<input type="number" class="jump-page-size">页
+											</div>
+										</div>
+									</div>
+
+                                                    
+                                                    
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.content-wrapper -->
+</div>
+<footer class="main-footer">
+		<div class="container" style="text-align: center;">
+			<strong>Copyright &copy; 2018 <a href="http://shenqikai.com">CatBlog</a></strong>
+			<a href="http://www.miitbeian.gov.cn/" class="text-black" target="_blank">苏ICP备19003971号-1</a>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<script type="text/javascript" src="../../../static/components/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../static/components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="../../../static/js/script.js"></script>
+	<script type="text/javascript" src="../../../static/components/adminlte/js/adminlte.min.js"></script>
+</body>
+</html>

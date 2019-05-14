@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      
+	<head>
+		<meta charset="utf-8">
+		<title> 注册成功</title>
+		<link rel="icon" href="../../../static/Cat4.ico" type="image/x-icon" />
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../../static/components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../../static/components/adminlte/css/AdminLTE.min.css">
+		<link rel="stylesheet" href="../../../static/components/adminlte/css/skins/skin-green-light.min.css">
+		<link rel="stylesheet" href="../../../static/css/style.css">
+
+	</head>
+
+<style>
+    ul {
+        list-style-type: none;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .box-body {
+        min-height: 500px;
+    }
+</style>
+
+</head>
+
+	
+    	<header class="main-header">
+
+		<body class="hold-transition skin-green-light layout-top-nav">
+			<div class="wrapper">
+
+				<nav class="navbar navbar-static-top">
+					<div class="container">
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+							<ul class="nav navbar-nav" style="">
+								<form class="navbar-form navbar-left" action="/search/articles" role="search">
+									<div class="form-group">
+										<input type="text" class="form-control global-search-input" name="keywords" id="main-search-input" placeholder="Search...">
+									</div>
+								</form>
+								<li style="padding-left: 40px;">
+									<a href="index.html" class="active">首页</a>
+								</li>
+
+								<li style="padding-left: 40px;">
+									<a href="home/article_list.html" class="active">日志</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../templates/home/userspace/article/add.html">写日志</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="home/question_list.html">问答</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../templates/home/userspace/question/add.html">提问</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="home/homepage/article.html">我的主页</a>
+								</li>
+							</ul>
+
+						</div>
+
+						<div class="navbar-custom-menu" id="user-nav-wrapper">
+
+							<ul class="nav navbar-nav">
+								<li>
+									<a id="loginModalBtn" href="../templates/home/login/login.html">登录 </a>
+								</li>
+								<li>
+									<a href="../templates/home/login/register.html" target="_blank">注册</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+	</header>
+
+    <div class="content-wrapper">
+
+        <div class="container">
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <i class="icon text-primary fa fa-check"></i>
+                                <h3 class="box-title text-primary">注册成功</h3>
+                            </div>
+                            <div class="box-body" style="text-align: center;">
+                                <h2 class="text-primary">欢迎加入CatBlog，您是本站第 <span th:class="text-maroon" >1</span> 位用户
+                                </h2>
+                                <p>在这里您可以分享技术，储备知识，记录时光，探讨疑问和结交一些志同道合的朋友！</p>
+                                <p>如果你在这里有任何疑问和建议，欢迎加入QQ群探讨和反馈：<span class="text-maroon"><b>888888</b></span>(CoderGroup交流群)
+                                    或 <span class="text-maroon"><b>6666666666</b></span>(开发者技术交流群)</p>
+                                <p>在这之前我们建议您先激活一下邮箱 <span class="text-maroon">1228394266@qq.com</span>（如需更改，<a
+                                       href="../../../templates/home/userspace/account/security.html" target="_blank">点此</a>），否则会影响后面的使用</p>
+                                <button type="button" class="btn btn-primary btn-lg" id="verify-email">立即激活</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</div>
+	<footer class="main-footer">
+		<div class="container" style="text-align: center;">
+			<strong>Copyright &copy; 2018 <a href="http://shenqikai.com">CatBlog</a></strong>
+			<a href="http://www.miitbeian.gov.cn/" class="text-black" target="_blank">苏ICP备19003971号-1</a>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+</body>
+</html>

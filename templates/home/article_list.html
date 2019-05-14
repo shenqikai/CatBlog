@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>日志</title>
+		<link rel="icon" href="../../static/Cat4.ico">
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../static/components/bootstrap/dist/css/bootstrap.min.css">
+		<!--<link rel="stylesheet" href="http://cdn.codergroup.cn/components/font-awesome/css/font-awesome.min.css">-->
+		<link rel="stylesheet" href="../../static/components/adminlte/css/AdminLTE.min.css">
+		<link rel="stylesheet" href="../../static/components/adminlte/css/skins/skin-green-light.min.css">
+		<link rel="stylesheet" href="../../static/css/style.css">
+
+		<style>
+			.nav-tabs-custom>.nav-tabs>li {
+				margin-bottom: 0;
+			}
+		</style>
+	</head>
+
+	<body class="hold-transition skin-green-light layout-top-nav">
+		<div class="wrapper">
+
+			<header class="main-header">
+				<nav class="navbar navbar-static-top">
+					<div class="container">
+						<div class="navbar-header">
+							<a href=" " class="navbar-brand">
+								<img src="" alt="" height="25">
+							</a>
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+						<i class="fa fa-bars"></i>
+					</button>
+						</div>
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+							<ul class="nav navbar-nav">
+								<form class="navbar-form navbar-left" action="/search/articles" role="search">
+									<div class="form-group">
+										<input type="text" class="form-control global-search-input" name="keywords" id="main-search-input" placeholder="Search...">
+									</div>
+								</form>
+								<li style="padding-left: 40px;">
+									<a href="../index.html" class="active">首页</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../home/article_list.html" class="active">日志 <span class="sr-only">(current)</span></a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../home/userspace/article/add.html">写日志 <span class="sr-only">(current)</span></a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../home/question_list.html">问答</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../templates/home/userspace/question/add.html">提问</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../home/homepage/article.html">我的主页</a>
+								</li>
+							</ul>
+
+							<!--<ul class="nav navbar-nav">
+						<li style="padding-left: 40px;"><a href="../home/userspace/article/add.html">写日志 <span class="sr-only">(current)</span></a></li>
+						<li style="padding-left: 40px;"><a href="../templates/home/userspace/question/add.html">提问</a></li>
+					</ul>-->
+						</div>
+
+						<div class="navbar-custom-menu" id="user-nav-wrapper">
+
+							<ul class="nav navbar-nav">
+								<li>
+									<a id="loginModalBtn" href="login/login.html">登录 </a>
+								</li>
+								<li>
+									<a href="/register" target="_blank">注册</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</header>
+
+			<div class="content-wrapper">
+				<div class="container">
+					<!-- Main content -->
+					<section class="content">
+						<div class="row">
+
+							<div class="col-md-3">
+								<div class="box box-solid">
+									<div class="box-header with-border">
+										<h3 class="box-title">近七日排行榜</h3>
+
+										<div class="box-tools">
+											<button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+										</div>
+									</div>
+									<div class="box-body no-padding">
+										<div class="ranking-card-base false">
+											<div class="ranking-list-base true">
+												<div class="ranking-list">
+													<div class="ranking-list-item">
+
+														<div class="list-inner">
+															<div class="ranking"></div>
+															<div class="avatar">
+																<a t target="_blank">
+																	<img src="../../static/Cat.jpg" style="height: 30px; width: 30px;" class="img-circle"></a>
+															</div>
+															<div class="name-info">
+																<div class="name" t></div>
+																<div class="info">已发布1篇文章</div>
+															</div>
+														</div>
+													</div>
+													<div class="ranking-list-item-more">
+														<a href="javascript:void(0)">
+															<div class="list-inner text-center">显示更多...</div>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="box box-solid">
+									<div class="box-header with-border">
+										<h3 class="box-title">推荐关键词</h3>
+										<div class="box-tools">
+											<button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+										</div>
+									</div>
+									<div class="box-body">
+										<div class="tag-box clearfix">
+											<a class="label"></a>
+
+										</div>
+									</div>
+
+								</div>
+
+								<div class="box box-solid">
+									<div class="box-header with-border">
+										<h3 class="box-title">热门文章</h3>
+										<div class="box-tools">
+											<button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+										</div>
+									</div>
+									<div class="box-body">
+										<ul class="hot-article">
+											<li>
+												<span>1</span>
+												<a>【新】破解花园宝宝</a>
+											</li>
+
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="col-md-9">
+								<div class="nav-tabs-custom">
+									<ul class="nav nav-tabs">
+										<li class="active">
+											<a>全部文章</a>
+										</li>
+										<li>
+											<a href="../home/userspace/article/list.html">我的文章</a>
+										</li>
+
+										
+										<li>
+											<a href="../home/userspace/bookmark.html">我的收藏</a>
+										</li>
+				
+
+									</ul>
+									<div class="blank"></div>
+									<div class="tab-content bg-bg" id="tab-content">
+
+										<div class="tab-pane active" id="tab-pane">
+
+											<form action=""  id="article-search-form" class="input-group input-group-lg search">
+												
+												<input type="text" name="keywords" th:value="${keywords}" class="form-control" id="search-keyword" autocomplete="off" placeholder="在本站全部文章中搜索...">
+											
+												<span class="input-group-btn">
+                                            <button type="button" class="btn btn-primary" id="search-btn">搜索一下</button>
+                                        </span>
+											</form>
+
+											<div class="blank"></div>
+
+											<div id="search-result">
+
+												共查询到 <span class="text-maroon">  X</span> 条记录
+											</div>
+											<ul class="post-box" id="article-list-ul">
+												<li>
+													<div class="post-box-item">
+
+														<h3 class="post-box-header">
+                                                    <a href="" class="title-link">
+                                                     关于OpenCV智能识别图形，二值化处理
+                                                    </a>
+                                                </h3>
+														<div class="post-box-body" style="overflow: hidden;
+																						    text-overflow: ellipsis;
+																						    white-space: nowrap;">
+														</div>
+														<div class="post-box-footer">
+															<div id="article-info-ul">
+																<ul class="list-inline">
+																	<li>
+																		<a href="">
+																			<img src="../../static/Cat.jpg" alt="" class="img-circle" width="30">
+																			<span>沈琪凯</span>
+																		</a>
+																	</li>
+																	<li class="pull-right">
+																		<a href="#" class="link-black">
+																			<i class="margin-r-5"></i>评论5</a>
+																	</li>
+																	<li class="pull-right">
+																		<a href="#" class="link-black">
+																			<i class="margin-r-5"></i>阅读5
+																		</a>
+																	</li>
+																	<li>
+																		<a href="#" class="link-black">
+																			<i class="margin-r-5"></i>2019.2.20
+																		</a>
+																	</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
+											<!--分页-->
+											<div data-th-fragment="bottom-page">
+												<div class="bottom-page paging-box-big">
+													<a href="javascript:void(0)" class="page-link prev">上一页</a>
+													<a href="javascript:void(0)" class="page-link">1</a>
+
+													<a href="javascript:void(0)" class="page-link next">下一页</a>
+													<div class="page-jump">共<span>2</span>页，跳至
+														<input type="number" class="jump-page-size">页
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+						<!-- /.box -->
+					</section>
+					<!-- /.content -->
+				</div>
+				<!-- /.container -->
+			</div>
+		</div>
+
+	</body>
+
+			<footer class="main-footer">
+			<div class="container" style="text-align: center;">
+				<strong>Copyright &copy; 2018 <a href="http://shenqikai.com">CatBlog</a></strong>
+				<a href="http://www.miitbeian.gov.cn/" class="text-black" target="_blank">苏ICP备19003971号-1</a>
+			</div>
+			<!-- /.container -->
+		</footer>
+
+		<script type="text/javascript" src="../../static/components/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../static/components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../static/components/layer/layer.js"></script>
+		<script type="text/javascript" src="../../static/js/script.js"></script>
+		<script type="text/javascript" src="../../static/components/adminlte/js/adminlte.min.js"></script>
+		
+
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="max-age=72000"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../static/components/bootstrap/dist/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="http://cdn.codergroup.cn/components/font-awesome/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="../../../static/components/adminlte/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../../../static/components/adminlte/css/skins/skin-green-light.min.css">
+    <link rel="stylesheet" href="../../../static/css/style.css">
+    <link rel="stylesheet" href="../../../static/components/layer/theme/default/layer.css">
+    </head>
+
+<style>
+    .nav-tabs-custom>.nav-tabs>li {
+        margin-bottom: 0;
+    }
+</style>
+</head>
+
+
+	
+	 <header class="main-header">
+
+		<body class="hold-transition skin-green-light layout-top-nav">
+			<div class="wrapper">
+
+				<nav class="navbar navbar-static-top">
+					<div class="container">
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+							<ul class="nav navbar-nav" style="">
+								<form class="navbar-form navbar-left" action="/search/articles" role="search">
+									<div class="form-group">
+										<input type="text" class="form-control global-search-input" name="keywords" id="main-search-input" placeholder="Search...">
+									</div>
+								</form>
+								<li style="padding-left: 40px;">
+									<a href="../../index.html" class="active">首页</a>
+								</li>
+
+								<li style="padding-left: 40px;">
+									<a href="../../home/article_list.html" class="active">日志</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../../home/userspace/article/add.html">写日志</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../../home/question_list.html">问答</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../../home/userspace/question/add.html">提问</a>
+								</li>
+								<li style="padding-left: 40px;">
+									<a href="../../home/homepage/article.html">我的主页</a>
+								</li>
+							</ul>
+
+						</div>
+
+						<div class="navbar-custom-menu" id="user-nav-wrapper">
+
+							<ul class="nav navbar-nav">
+								<li>
+									<a id="loginModalBtn" href="../../home/login/login.html">登录 </a>
+								</li>
+								<li>
+									<a href="../../home/login/register.html" target="_blank">注册</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+	</header>
+    
+    
+    
+    <div class="content-wrapper">
+        <div class="container">
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+                                <li><a href="article.html">文章</a></li>
+                                <li class="active"><a href="question.html">问答</a></li>
+                                <li class="pull-right">
+                                    <div style="line-height: 40px;">
+                                        <span>排序: </span>
+                                        <div class="btn-group btn-group-xs" id="sort-list">
+                                            <a class="btn btn-default" role="button">时间</a>
+                                            <a class="btn btn-default" role="button">阅读</a>
+                                            <a class="btn btn-default" role="button">回答</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="blank"></div>
+                            <div class="tab-content bg-bg" id="tab-content" >
+
+                                <div class="tab-pane active" id="tab-pane">
+
+                                    <form  id="search-form"
+                                          class="input-group input-group-lg search">
+                                        <input type="text" name="keywords" class="form-control"
+                                               id="search-keyword" autocomplete="off"
+                                               placeholder="在本站全部文章中搜索...">
+                                        <input type="hidden" name="orderby" id="search-order"
+                                               class="form-control" autocomplete="off">
+                                        <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-primary">搜索一下</button>
+                                        </span>
+                                    </form>
+
+
+                                    <div class="blank"></div>
+
+                                    <div 
+                                         id="search-result">
+                                        共查询到 <span class="text-maroon">X</span> 条记录
+                                    </div>
+
+                                    <div class="stream-list question-stream" style="background: #fff;">
+                                        <section class="stream-list__item" >
+                                            <div class="qa-rank">
+                                                <div class="answers">
+                                                  1<small>回答</small>
+                                                </div>
+                                                <div class="answers solved" >
+                                                   1<small>解决</small>
+                                                </div>
+                                                <div class="views hidden-xs viewsword0to99">
+                                                    <span>20</span>
+                                                    <small>浏览</small>
+                                                </div>
+                                            </div>
+                                            <div class="summary">
+                                                <ul class="author list-inline">
+                                                    <li>
+                                                        <a >沈琪凯</a>
+                                                        <span class="split"></span>
+                                                        <a  class="askDate" >三天前提问</a>
+                                                    </li>
+                                                </ul>
+                                                <h2 class="title" >
+                                                    <a  href="../question_detail.html"><span    class="text-maroon"  >[已解决]</span>沈琪凯好帅啊</a>
+                                                </h2>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <div class="blank"></div>
+                        	<!--分页-->
+								<div data-th-fragment="bottom-page">
+									<div class="bottom-page paging-box-big">
+
+										<a href="javascript:void(0)" class="page-link prev">上一页</a>
+
+										<a href="javascript:void(0)" class="page-link">1</a>
+
+										<a href="javascript:void(0)" class="page-link next">下一页</a>
+
+										<div class="page-jump">共<span>2</span>页，跳至
+											<input type="number" class="jump-page-size">页
+										</div>
+									</div>
+								</div>
+
+								<!--/分页-->
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.box -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.container -->
+    </div>
+</div>
+
+<footer class="main-footer">
+		<div class="container" style="text-align: center;">
+			<strong>Copyright &copy; 2018 <a href="http://shenqikai.com">CatBlog</a></strong>
+			<a href="http://www.miitbeian.gov.cn/" class="text-black" target="_blank">苏ICP备19003971号-1</a>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<script type="text/javascript" src="../../../static/components/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../static/components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="../../../static/js/script.js"></script>
+	<script type="text/javascript" src="../../../static/components/adminlte/js/adminlte.min.js"></script>
+<script type="text/javascript"   src="../../../js/search.js"></script>
+</body>
+</html>
+
+
+
+

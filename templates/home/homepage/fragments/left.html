@@ -1,0 +1,80 @@
+<div class="col-md-3">
+
+    <div class="box box-solid">
+        <div class="box-body box-profile">
+            <a href="@{'/manage/messages?uid='+${user.id}}" target="_blank">
+                <img class="profile-user-img img-responsive img-circle"
+                     alt="User profile picture">
+            </a>
+            <h3 class="profile-username text-center" >起开</h3>
+            <p class="text-muted text-center"
+             >Java工程师</p>
+
+            <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                    <b>粉丝</b> <a class="pull-right" >1,322</a>
+                </li>
+                <li class="list-group-item">
+                    <b>关注</b> <a class="pull-right" >543</a>
+                </li>
+                <li class="list-group-item">
+                    <b>声望</b> <a class="pull-right" >32</a>
+                </li>
+            </ul>
+
+            <div class="clear"></div>
+            <a href="javascript:void(0)" class="btn btn-primary btn-block follow col-md-6"
+
+               data-th-attr="data-uid=${user.id},data-isFollow=${isFollow}">
+                <span class="default-text"><b>关注</b></span>
+                <span class="hover-text"><b>关注</b></span>
+            </a>
+            <a href="@{'/manage/messages?uid='+${user.id}}"
+               class="btn btn-primary btn-block notfollow" target="_blank"
+               >
+                <span class="default-text"><b>已关注</b></span>
+                <span class="hover-text"><b>私信</b></span>
+            </a>
+        </div>
+        <!-- /.box-body -->
+    </div>
+
+    <div class="box box-solid hidden-xs">
+        <div class="box-header with-border">
+            <h3 class="box-title">用户说明</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body profile" ></div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+
+
+    <div class="box box-solid hidden-xs">
+        <div class="box-header with-border">
+            <h3 class="box-title">查看更多</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <strong><i class="fa fa-link margin-r-5"></i> 个人主页</strong>
+
+            <p class="text-muted"><a href="user.homepage"
+                                     href="http://shenqikai.com"
+                                     target="_blank">http://shenqikai.com</a></p>
+
+            <hr>
+            <strong><i class="fa fa-github margin-r-5"></i> Github</strong>
+
+            <p class="text-muted"><a href="user.github"
+                                     href="http://liuyanzhao.com"
+                                     target="_blank">http://shenqikai.com</a></p>
+            <hr>
+            <strong><i class="fa fa-qq margin-r-5"></i>联系方式</strong>
+
+            <p class="text-muted"><span ></span></p>
+
+
+        </div>
+    </div>
+
+</div>
